@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+	/* widget controller */
+	var c = this;
+
+	c.add = function(){
+		// Add new link to the chain
+		c.data.action = "addToChain";
+		c.server.get({'action':'addToChain','block':c.data.block_data,'blockchain':c.data.blockchain}).then(function(r){
+			c.data.action = undefined;
+			c.data.block_data = {};
+			c.data.blockchain.push(r.data.hash);
+		});
+	}
+	
+	c.data.regions = [
+		{
+			"label":"North Africa",
+			"countries":[
+				{'name':'Algeria'},
+				{'name':'Egypt'},
+				{'name':'Libya'},
+				{'name':'Morocco'},
+				{'name':'Tunisia'},
+				{'name':'Western Sahara'}
+			]
+		},
+		{
+			"label":"Sub-Saharan Africa",
+			"countries":[
+				{'name':'Angola'},
+				{'name':'Benin'},
+				{'name':'Botswana'},
+				{'name':'Burkina Faso'},
+				{'name':'Burundi'},
+				{'name':'Cameroon'},
+				{'name':'Cape Verde'},
+				{'name':'Central African Republic'},
+				{'name':'Chad'},
+				{'name':'Comoros'},
+				{'name':'Congo'},
+				{'name':"Côte d'Ivoire"},
+				{'name':'Djibouti'},
+				{'name':'Equatorial Guinea'},
+				{'name':'Eritrea'},
+				{'name':'Ethiopia'},
+				{'name':'Gabon'},
+				{'name':'Gambia'},
+				{'name':'Ghana'},
+				{'name':'Guinea'},
+				{'name':'Guinea-Bissau'},
+				{'name':'Kenya'},
+				{'name':'Lesotho'},
+				{'name':'Liberia'},
+				{'name':'Madagascar'},
+				{'name':'Malawi'},
+				{'name':'Mali'},
+				{'name':'Mauritania'},
+				{'name':'Mauritius'},
+				{'name':'Mayotte'},
+				{'name':'Mozambique'},
+				{'name':'Namibia'},
+				{'name':'Niger'},
+				{'name':'Nigeria'},
+				{'name':'Réunion'},
+				{'name':'Rwanda'},
+				{'name':'Saint Helena, Ascension and Tristan da Cunha'},
+				{'name':'Sao Tomé and Principe'},
+				{'name':'Senegal'},
+				{'name':'Seychelles'},
+				{'name':'Sierra Leone'},
+				{'name':'Somalia'},
+				{'name':'South Africa'},
+				{'name':'South Sudan'},
+				{'name':'Sudan'},
+				{'name':'Swaziland'},
+				{'name':'The Democratic Republic of the Congo'},
+				{'name':'Togo'},
+				{'name':'Uganda'},
+				{'name':'United Republic of Tanzania'},
+				{'name':'Zambia'},
+				{'name':'Zimbabwe'}
+			]
+		},
+		{
+			"label":"Antarctic",
+			"countries":[
+				{'name':'Bouvet Island'},
+				{'name':'French Southern Territories'},
+				{'name':'Heard Island and McDonald Islands'},
+				{'name':'South Georgia and the South Sandwich Islands'}
+			]
+		},
+		{
+			"label":"East Asia",
+			"countries":[
+				{'name':'China'},
+				{'name':'Hong Kong'},
+				{'name':'Japan'},
+				{'name':"Korea, Democratic People's Republic of"},
+				{'name':'Korea, Republic of'},
+				{'name':'Macao'},
+				{'name':'Mongolia'},
+				{'name':'Taiwan, Province of China'}
+
+			]
+		},
+		{
+			"label":"North Asia",
+			"countries":[
+				{'name':'Belarus'},
+				{'name':'Moldova'},
+				{'name':'Russian Federation'},
+				{'name':'Ukraine'}
+			]
+		},
+		{
+			"label":"East Asia",
+			"countries":[
+				{'name':'China'},
+				{'name':'Hong Kong'},
+				{'name':'Japan'},
+				{'name':"Korea, Democratic People's Republic of"},
+				{'name':'Korea, Republic of'},
+				{'name':'Macao'},
+				{'name':'Mongolia'},
+				{'name':'Taiwan, Province of China'}
+
+			]
+		},
+		{
+			"label":"West & Central Asia",
+			"countries":[
+				{'name':'Afghanistan'},
+				{'name':'Armenia'},
+				{'name':'Azerbaijan'},
+				{'name':'Bahrain'},
+				{'name':'Cyprus'},
+				{'name':'Georgia'},
+				{'name':'Islamic Republic of Iran'},
+				{'name':'Iraq'},
+				{'name':'Israel'},
+				{'name':'Jordan'},
+				{'name':'Kazakhstan'},
+				{'name':'Kuwait'},
+				{'name':'Kyrgyzstan'},
+				{'name':'Lebanon'},
+				{'name':'Oman'},
+				{'name':'Pakistan'},
+				{'name':'State of Palestine'},
+				{'name':'Qatar'},
+				{'name':'Saudi Arabia'},
+				{'name':'Syrian Arab Republic'},
+				{'name':'Tajikistan'},
+				{'name':'Turkey'},
+				{'name':'Turkmenistan'},
+				{'name':'United Arab Emirates'},
+				{'name':'Uzbekistan'},
+				{'name':'Yemen'}
+
+			]
+		},
+		{
+			"label":"South & South East Asia",
+			"countries":[
+				{'name':'Bangladesh'},
+				{'name':'Bhutan'},
+				{'name':'British Indian Ocean Territory'},
+				{'name':'Brunei Darussalam'},
+				{'name':'Cambodia'},
+				{'name':'Disputed Territory'},
+				{'name':'India'},
+				{'name':'Indonesia'},
+				{'name':"Lao People's Democratic Republic"},
+				{'name':'Malaysia'},
+				{'name':'Maldives'},
+				{'name':'Myanmar'},
+				{'name':'Nepal'},
+				{'name':'Philippines'},
+				{'name':'Singapore'},
+				{'name':'Sri Lanka'},
+				{'name':'Thailand'},
+				{'name':'Timor-Leste'},
+				{'name':'Viet Nam'}
+			]
+		},
+		{
+			"label":"Europe",
+			"countries":[
+				{'name':'Åland Islands'},
+				{'name':'Albania'},
+				{'name':'Andorra'},
+				{'name':'Austria'},
+				{'name':'Belgium'},
+				{'name':'Bosnia and Herzegovina'},
+				{'name':'Bulgaria'},
+				{'name':'Croatia'},
+				{'name':'Czech Republic'},
+				{'name':'Denmark'},
+				{'name':'Estonia'},
+				{'name':'Faroe Islands'},
+				{'name':'Finland'},
+				{'name':'France'},
+				{'name':'Germany'},
+				{'name':'Gibraltar'},
+				{'name':'Greece'},
+				{'name':'Greenland'},
+				{'name':'Guernsey'},
+				{'name':'Vatican City State'},
+				{'name':'Hungary'},
+				{'name':'Iceland'},
+				{'name':'Ireland'},
+				{'name':'Isle of Man'},
+				{'name':'Italy'},
+				{'name':'Jersey'},
+				{'name':'Latvia'},
+				{'name':'Liechtenstein'},
+				{'name':'Lithuania'},
+				{'name':'Luxembourg'},
+				{'name':'The former Yugoslav Republic of Macedonia'},
+				{'name':'Malta'},
+				{'name':'Monaco'},
+				{'name':'Montenegro'},
+				{'name':'Netherlands'},
+				{'name':'Norway'},
+				{'name':'Poland'},
+				{'name':'Portugal'},
+				{'name':'Romania'},
+				{'name':'San Marino'},
+				{'name':'Serbia'},
+				{'name':'Slovakia'},
+				{'name':'Slovenia'},
+				{'name':'Spain'},
+				{'name':'Svalbard and Jan Mayen'},
+				{'name':'Sweden'},
+				{'name':'Switzerland'},
+				{'name':'United Kingdom '}
+			]
+		},
+		{
+			"label":"Caribbean Islands",
+			"countries":[
+				{'name':'Anguilla'},
+				{'name':'Antigua and Barbuda'},
+				{'name':'Aruba'},
+				{'name':'Bahamas'},
+				{'name':'Barbados'},
+				{'name':'Bermuda'},
+				{'name':'Cayman Islands'},
+				{'name':'Bonaire, Sint Eustatius and Saba'},
+				{'name':'Cuba'},
+				{'name':'Dominica'},
+				{'name':'Curaçao'},
+				{'name':'Dominican Republic'},
+				{'name':'Grenada'},
+				{'name':'Guadeloupe'},
+				{'name':'Haiti'},
+				{'name':'Jamaica'},
+				{'name':'Martinique'},
+				{'name':'Montserrat'},
+				{'name':'Puerto Rico'},
+				{'name':'Saint Bathélemy'},
+				{'name':'Saint Kitts and Nevis'},
+				{'name':'Saint Lucia'},
+				{'name':'Saint Martin (French Part)'},
+				{'name':'Saint Vincent and the Grenadines'},
+				{'name':'Sint Maarten (Dutch Part)'},
+				{'name':'Trinidad and Tobago'},
+				{'name':'Turks and Caicos Islands'},
+				{'name':'Virgin Islands, British'},
+				{'name':'Virgin Islands, U.S.'}
+			]
+		},
+		{
+			"label":"Central America",
+			"countries":[
+				{'name':'Belize'},
+				{'name':'Costa Rica'},
+				{'name':'El Salvador'},
+				{'name':'Guatemala'},
+				{'name':'Honduras'},
+				{'name':'Nicaragua'},
+				{'name':'Panama'}
+			]
+		},
+		{
+			"label":"North America",
+			"countries":[
+				{'name':'Canada'},
+				{'name':'Mexico'},
+				{'name':'Saint Pierre and Miquelon'},
+				{'name':'United States'}
+			]
+		},
+		{
+			"label":"Oceania",
+			"countries":[
+				{'name':'American Samoa'},
+				{'name':'Australia'},
+				{'name':'Christmas Island'},
+				{'name':'Cocos (Keeling) Islands'},
+				{'name':'Cook Islands'},
+				{'name':'Fiji'},
+				{'name':'French Polynesia'},
+				{'name':'Guam'},
+				{'name':'Kiribati'},
+				{'name':'Marshall Islands'},
+				{'name':'Micronesia, Federated States of'},
+				{'name':'Nauru'},
+				{'name':'New Caledonia'},
+				{'name':'New Zealand'},
+				{'name':'Niue'},
+				{'name':'Norfolk Island'},
+				{'name':'Northern Mariana Islands'},
+				{'name':'Palau'},
+				{'name':'Papua New Guinea'},
+				{'name':'Pitcairn'},
+				{'name':'Samoa'},
+				{'name':'Solomon Islands'},
+				{'name':'Tokelau'},
+				{'name':'Tonga'},
+				{'name':'Tuvalu'},
+				{'name':'United States Minor Outlying Islands'},
+				{'name':'Vanuatu'},
+				{'name':'Wallis and Futuna'}
+			]
+		},
+		{
+			"label":"South America",
+			"countries":[
+				{'name':'Argentina'},
+				{'name':'Bolivia'},
+				{'name':'Brazil'},
+				{'name':'Chile'},
+				{'name':'Colombia'},
+				{'name':'Ecuador'},
+				{'name':'Falkland Islands (Malvinas)'},
+				{'name':'French Guiana'},
+				{'name':'Guyana'},
+				{'name':'Paraguay'},
+				{'name':'Peru'},
+				{'name':'Suriname'},
+				{'name':'Uruguay'},
+				{'name':'Venezuela, Bolivarian Republic of'}
+			]
+		}
+	];
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>blockchain_test</id>
+        <internal>false</internal>
+        <link/>
+        <name>Blockchain Test</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	function createBlock(idx, prvHash, info){
+		var gdt = new GlideDateTime();
+		var curDate = gdt.getDate();
+		if(!prvHash){
+			prvHash = '';
+		}
+		
+		this.calculateHash = function(){	
+			var Crypt = new Crypto();
+			var gdt = new GlideDateTime();
+			var hash = Crypt.CryptoJS.SHA256(idx+prvHash+curDate+info);
+			return hash.toString();
+		}
+		
+		var block = {
+			'index':idx,
+			'timestamp':curDate,
+			'data':info,
+			'previousHash':prvHash,
+			'hash':calculateHash(idx + prvHash + gdt.getDate() + JSON.stringify(info))
+		};
+		
+		return block;
+	}
+
+	function createGenesisBlock(){
+		return createBlock(0, "0", "Genesis block");
+	}
+
+	data.blockchain = [createGenesisBlock()];
+
+	if(input){
+		if(input.action == "addToChain"){
+			var latestBlock = input.blockchain[input.blockchain.length-1];
+			
+			data.hash = createBlock((latestBlock.index+1), latestBlock.hash, input.block);
+			data.blockchain.push(data.hash);
+		}
+	}
+
+
+
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>madeleonardis</sys_created_by>
+        <sys_created_on>2018-03-13 21:21:31</sys_created_on>
+        <sys_id>17671e824f3413008928a7d18110c74e</sys_id>
+        <sys_mod_count>134</sys_mod_count>
+        <sys_name>Blockchain Test</sys_name>
+        <sys_package display_value="blockchain_test" source="x_26578_blockchain">ae0918514f6013008928a7d18110c77b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="blockchain_test">ae0918514f6013008928a7d18110c77b</sys_scope>
+        <sys_update_name>sp_widget_17671e824f3413008928a7d18110c74e</sys_update_name>
+        <sys_updated_by>madeleonardis</sys_updated_by>
+        <sys_updated_on>2018-03-14 17:00:13</sys_updated_on>
+        <template><![CDATA[<div>
+  <form class="col-xs-12">
+    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control input-control input-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ng-model="c.data.block_data.email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 col-md-2">
+      <label for="sex">Sex</label>
+      <select id="sex" class="form-control input-control input-sm" ng-model="c.data.block_data.sex" maxlength="1" >
+        <option>M</option>
+        <option>F</option>
+      </select>
+      <small  class="form-text text-muted"></small>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 col-md-2">
+      <label for="age">Age</label>
+      <input id="age" type="integer" class="form-control input-control input-sm" ng-model="c.data.block_data.age" maxlength="3" >
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+      <label>Country</label>
+      <select id="country" class="form-control input-control input-sm" ng-model="c.data.block_data.country" >
+        <option value="">-- Country --</option>
+        <optgroup ng-repeat="region in data.regions" label="{{region.label}}">
+          <option ng-repeat="country in region.countries" value="{{country.name}}">{{country.name}}</option>
+        </optgroup>
+      </select>
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group col-xs-12">
+      <div class="input-group-btn">
+        <button type="submit" ng-click="c.add()" class="btn btn-primary">
+          Add
+        </button>
+      </div>
+    </div>
+
+  </form>
+  <pre class="col-xs-12">
+  {{data.block_data | json}}
+  {{data.blockchain | json}}
+  </pre>
+</div>]]></template>
+    </sp_widget>
+</record_update>

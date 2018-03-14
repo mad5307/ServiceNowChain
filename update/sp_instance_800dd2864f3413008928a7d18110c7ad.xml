@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">09fc96864f3413008928a7d18110c73c</sp_column>
+        <sp_widget display_value="Blockchain Test">17671e824f3413008928a7d18110c74e</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>madeleonardis</sys_created_by>
+        <sys_created_on>2018-03-13 21:45:52</sys_created_on>
+        <sys_id>800dd2864f3413008928a7d18110c7ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="blockchain_test" source="x_26578_blockchain">ae0918514f6013008928a7d18110c77b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="blockchain_test">ae0918514f6013008928a7d18110c77b</sys_scope>
+        <sys_update_name>sp_instance_800dd2864f3413008928a7d18110c7ad</sys_update_name>
+        <sys_updated_by>madeleonardis</sys_updated_by>
+        <sys_updated_on>2018-03-13 21:45:52</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=800dd2864f3413008928a7d18110c7ad"/>
+</record_update>
